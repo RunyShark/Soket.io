@@ -32,15 +32,10 @@ class Server {
       socket.on("disconnect", () => {
         console.log("Cliente desconectado".red);
       });
-      socket.on("enviar-mensaje", (payload) => {
-        console.log("Desde el server", { payload });
-
-        const payloadd = {
-          msg: "Saludos desde el back",
-          payload,
-        };
-
-        this.io.emit("enviar-mensaje", payloadd);
+      socket.on("enviar-mensaje", (payload, callback) => {
+        const id = 123123;
+        callback(id);
+        //this.io.emit("enviar-mensaje", payload);
       });
     });
   }
