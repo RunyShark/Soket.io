@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const io = require("socket.io");
 const http = require("http");
+const { socketController } = require("../sockets/contoller");
 const { dbConnection } = require("../db/config");
 const { PORT_SEV } = process.env;
 require("colors");
@@ -26,18 +27,7 @@ class Server {
   }
 
   sockets() {
-    this.io.on("connection", (socket) => {
-      console.log(`${"cliente conectado".yellow} ID: ${socket.id.green}`);
-
-      socket.on("disconnect", () => {
-        console.log("Cliente desconectado".red);
-      });
-      socket.on("enviar-mensaje", (payload, callback) => {
-        const id = 123123;
-        callback(id);
-        //this.io.emit("enviar-mensaje", payload);
-      });
-    });
+    this.io.on("connection", socketController);
   }
   middleware() {
     this.app.use(cors());
