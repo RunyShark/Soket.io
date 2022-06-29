@@ -10,6 +10,11 @@ socket.on("connect", () => {
 socket.on("disconnect", () => {
   crearButton.disabled = true;
 });
+
+socket.on("ultimo-ticket", (ultimo) => {
+  lblNuevoTicket.innerText = "Ticket " + ultimo;
+});
+
 crearButton.addEventListener("click", () => {
   socket.emit("siguiente-ticket", null, (ticket) => {
     lblNuevoTicket.innerText = ticket;
