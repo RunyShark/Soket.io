@@ -32,6 +32,9 @@ class Server {
       socket.on("disconnect", () => {
         console.log("Cliente desconectado".red);
       });
+      socket.on("enviar-mensaje", (payload) => {
+        console.log({ resuls: payload });
+      });
     });
   }
   middleware() {
