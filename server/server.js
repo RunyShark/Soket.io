@@ -33,7 +33,14 @@ class Server {
         console.log("Cliente desconectado".red);
       });
       socket.on("enviar-mensaje", (payload) => {
-        console.log({ resuls: payload });
+        console.log("Desde el server", { payload });
+
+        const payloadd = {
+          msg: "Saludos desde el back",
+          payload,
+        };
+
+        this.io.emit("enviar-mensaje", payloadd);
       });
     });
   }

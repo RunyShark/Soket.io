@@ -10,6 +10,11 @@ socket.on("connect", () => {
   lblOnline.style.display = "";
 });
 
+socket.on("enviar-mensaje", (payload) => {
+  socket.on("enviar-mensaje", payload);
+  console.log(payload);
+});
+
 socket.on("disconnect", () => {
   console.log("Desconectado del servidor");
   lblOnline.style.display = "none";
