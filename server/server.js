@@ -19,11 +19,21 @@ class Server {
     this.conectarDB();
     this.middleware();
     this.router();
+    this.sockets();
   }
   async conectarDB() {
     await dbConnection();
   }
 
+  sockets() {
+    this.io.on("connection", (socket) => {
+      console.log(`${"cliente conectado".yellow} ID: ${socket.id.green}`);
+
+      socket.on("disconnect", () => {
+        console.log("Cliente desconectado".red);
+      });
+    });
+  }
   middleware() {
     this.app.use(cors());
     this.app.use(express.json());
