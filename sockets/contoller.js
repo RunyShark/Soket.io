@@ -7,6 +7,8 @@ const ticketContro = new TicketContro();
 const socketController = (socket) => {
   console.log(`${"cliente conectado".yellow} ID: ${socket.id.green}`);
 
+  socket.emit("ultimo-ticket", ticketContro.ultimo);
+
   socket.on("disconnect", () => {
     console.log("Cliente desconectado".red, socket.id);
   });
