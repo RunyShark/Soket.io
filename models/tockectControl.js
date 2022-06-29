@@ -45,6 +45,25 @@ class TicketContro {
     const ticket = new Ticket(this.ultimo, null);
     this.ticktes.push(ticket);
     this.guardarDB();
+    return "Ticket " + this.ultimo;
+  }
+
+  atenderTicket(escritorio) {
+    if (this.ticktes.length === 0) {
+      return null;
+    }
+
+    const ticket = this.ticktes.shift();
+    ticket.escritorio = escritorio;
+
+    this.ultimosCuatro.unshift(ticket);
+
+    if (this.ultimosCuatro.length > 4) {
+      this.ultimosCuatro.splice(-1, 1);
+    }
+    this.guardarDB();
+
+    return ticket;
   }
 }
 

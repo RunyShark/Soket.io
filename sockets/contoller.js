@@ -10,10 +10,10 @@ const socketController = (socket) => {
   socket.on("disconnect", () => {
     console.log("Cliente desconectado".red, socket.id);
   });
-  socket.on("enviar-mensaje", (payload, callback) => {
-    const id = 123123;
-    callback(id);
-    socket.broadcast.emit("enviar-mensaje", payload);
+  socket.on("siguiente-ticket", (payload, callback) => {
+    const siguiente = ticketContro.siguiente();
+    callback(siguiente);
+    //TODO: Notificar
   });
 };
 
