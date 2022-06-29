@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const io = require("socket.io");
 const http = require("http");
 const { socketController } = require("../sockets/contoller");
-const { dbConnection } = require("../db/config");
 const { PORT_SEV } = process.env;
 require("colors");
 
@@ -17,13 +16,10 @@ class Server {
     this.path = {
       RoutePrueba: "/prueba",
     };
-    this.conectarDB();
+
     this.middleware();
     this.router();
     this.sockets();
-  }
-  async conectarDB() {
-    await dbConnection();
   }
 
   sockets() {

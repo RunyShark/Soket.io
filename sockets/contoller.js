@@ -1,5 +1,9 @@
 require("colors");
 
+const TicketContro = require("../models/tockectControl");
+
+const ticketContro = new TicketContro();
+
 const socketController = (socket) => {
   console.log(`${"cliente conectado".yellow} ID: ${socket.id.green}`);
 
