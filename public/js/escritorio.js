@@ -2,6 +2,7 @@ const escritorioNombre = document.querySelector("h1");
 const btnButtom = document.querySelector("button");
 const lblTicket = document.querySelector("small");
 const divAlerta = document.querySelector(".alert");
+const encolar = document.querySelector("#lblPendientes");
 
 const socket = io();
 

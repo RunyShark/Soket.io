@@ -3,7 +3,7 @@ const crearButton = document.querySelector("button");
 const socket = io();
 
 socket.on("connect", () => {
-  console.log("Conectado");
+  console.log("Conectado holaaa");
   crearButton.disabled = false;
 });
 

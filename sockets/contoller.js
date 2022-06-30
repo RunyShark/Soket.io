@@ -9,9 +9,13 @@ const socketController = (socket) => {
 
   socket.emit("ultimo-ticket", ticketContro.ultimo);
 
+  socket.emit("estado-actual", ticketContro.ultimosCuatro);
+
   socket.on("disconnect", () => {
     console.log("Cliente desconectado".red, socket.id);
   });
+
+  socket.on("estado-actual", (payload) => {});
 
   socket.on("siguiente-ticket", (payload, callback) => {
     const siguiente = ticketContro.siguiente();
@@ -28,6 +32,7 @@ const socketController = (socket) => {
     }
 
     const ticket = ticketContro.atenderTicket(escritorio);
+    socket.emit("estado-actual", ticketContro.ultimosCuatro);
     if (!ticket) {
       callback({
         ok: false,
