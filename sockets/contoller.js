@@ -12,10 +12,33 @@ const socketController = (socket) => {
   socket.on("disconnect", () => {
     console.log("Cliente desconectado".red, socket.id);
   });
+
   socket.on("siguiente-ticket", (payload, callback) => {
     const siguiente = ticketContro.siguiente();
     callback(siguiente);
     //TODO: Notificar
+  });
+
+  socket.on("atender-ticket", ({ escritorio }, callback) => {
+    if (!escritorio) {
+      return callback({
+        ok: false,
+        msg: "el escritorio es obligarotio",
+      });
+    }
+
+    const ticket = ticketContro.atenderTicket(escritorio);
+    if (!ticket) {
+      callback({
+        ok: false,
+        msg: "Ya no hay tickets",
+      });
+    } else {
+      callback({
+        ok: true,
+        ticket,
+      });
+    }
   });
 };
 
